@@ -197,6 +197,15 @@ void loop()
         BTSerial.write(accel);
         prevAccel = accel;
       }
+
+      if (btn[BTN_O] && !BTSerial.connected())
+      {
+        connected = false;
+        while (!connected)
+        {
+          connected = BTSerial.connect(adrs);
+        }
+      }
     }
 #else
     static int steer = 0;
